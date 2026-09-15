@@ -1,0 +1,26 @@
+﻿# SPRING BOOT / MAVEN .gitignore - ms-productos360
+target/
+!.mvn/wrapper/maven-wrapper.jar
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+*.war
+*.ear
+*.log
+logs/
+spring.log
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.project
+.classpath
+.factorypath
+.springBeans
+.DS_Store
+Thumbs.db
+.env
+.env.*
+docker-compose.override.yml
