@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  * Representa un producto del catalogo del sistema Pedidos360.
  */
 @Entity
-@Table(name = "PRODUCTS", schema = "ADMIN")
+@Table(name = "PRODUCTS")
 @Data
 @Builder
 @NoArgsConstructor
