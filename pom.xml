@@ -47,32 +47,12 @@
     <dependency>
       <groupId>com.azure.spring</groupId>
       <artifactId>spring-cloud-azure-starter-active-directory</artifactId>
-    </dependency>
+    </dependency>    <!-- Driver Oracle Production (Incluye ojdbc11, ucp y todas las librerias de Wallet) -->
     <dependency>
       <groupId>com.oracle.database.jdbc</groupId>
-      <artifactId>ojdbc11</artifactId>
+      <artifactId>ojdbc11-production</artifactId>
       <version>23.4.0.24.05</version>
-    </dependency>    <dependency>
-      <groupId>com.oracle.database.jdbc</groupId>
-      <artifactId>ucp11</artifactId>
-      <version>23.4.0.24.05</version>
-    </dependency>
-
-    <!-- Librerias de seguridad de Oracle (Requeridas para la Wallet SSO) -->
-    <dependency>
-      <groupId>com.oracle.database.security</groupId>
-      <artifactId>oraclepki</artifactId>
-      <version>23.4.0.24.05</version>
-    </dependency>
-    <dependency>
-      <groupId>com.oracle.database.security</groupId>
-      <artifactId>osdt_core</artifactId>
-      <version>23.4.0.24.05</version>
-    </dependency>
-    <dependency>
-      <groupId>com.oracle.database.security</groupId>
-      <artifactId>osdt_cert</artifactId>
-      <version>23.4.0.24.05</version>
+      <type>pom</type>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
