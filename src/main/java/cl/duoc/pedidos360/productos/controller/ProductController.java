@@ -1,4 +1,4 @@
-﻿package cl.duoc.pedidos360.productos.controller;
+package cl.duoc.pedidos360.productos.controller;
 
 import cl.duoc.pedidos360.productos.dto.ProductDTO;
 import cl.duoc.pedidos360.productos.entity.Product;

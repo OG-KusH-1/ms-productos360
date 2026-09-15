@@ -1,4 +1,4 @@
-﻿package cl.duoc.pedidos360.productos.dto;
+package cl.duoc.pedidos360.productos.dto;
 
 import jakarta.validation.constraints.*;
 import lombok.*;
