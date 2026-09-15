@@ -1,4 +1,4 @@
-﻿package cl.duoc.pedidos360.productos.entity;
+package cl.duoc.pedidos360.productos.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
