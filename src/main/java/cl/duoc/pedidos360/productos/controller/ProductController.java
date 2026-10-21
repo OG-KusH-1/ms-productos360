@@ -25,7 +25,7 @@ import java.util.List;
  * Los endpoints de lectura (GET) requieren SCOPE_Read o APPROLE_Operador.
  */
 @RestController
-@RequestMapping("/api/productos")
+@RequestMapping({"/api/productos", "/api/productos/", "/productos", "/productos/", "/api/productos/api/productos"})
 @RequiredArgsConstructor
 @Slf4j
 public class ProductController {
@@ -36,7 +36,7 @@ public class ProductController {
      * GET /api/productos
      * Lista todos los productos del catalogo.
      */
-    @GetMapping
+    @GetMapping({"", "/"})
     @PreAuthorize("hasAuthority('APPROLE_Operador') or hasAuthority('SCOPE_Read')")
     public ResponseEntity<List<Product>> getAllProducts(@AuthenticationPrincipal Jwt jwt) {
         log.info("[ProductController] GET /api/productos - Usuario: {}",
@@ -48,7 +48,7 @@ public class ProductController {
      * GET /api/productos/{id}
      * Obtiene un producto por ID.
      */
-    @GetMapping("/{id}")
+    @GetMapping({"/{id}", "/{id}/"})
     @PreAuthorize("hasAuthority('APPROLE_Operador') or hasAuthority('SCOPE_Read')")
     public ResponseEntity<Product> getProductById(
             @PathVariable Long id,
@@ -64,7 +64,7 @@ public class ProductController {
      * GET /api/productos/disponibles
      * Lista productos activos con stock > 0.
      */
-    @GetMapping("/disponibles")
+    @GetMapping({"/disponibles", "/disponibles/"})
     @PreAuthorize("hasAuthority('APPROLE_Operador') or hasAuthority('SCOPE_Read')")
     public ResponseEntity<List<Product>> getAvailableProducts() {
         return ResponseEntity.ok(productRepository.findAvailableProducts());
@@ -74,7 +74,7 @@ public class ProductController {
      * GET /api/productos/categoria/{categoria}
      * Filtra productos por categoria.
      */
-    @GetMapping("/categoria/{categoria}")
+    @GetMapping({"/categoria/{categoria}", "/categoria/{categoria}/"})
     @PreAuthorize("hasAuthority('APPROLE_Operador') or hasAuthority('SCOPE_Read')")
     public ResponseEntity<List<Product>> getByCategoria(@PathVariable String categoria) {
         return ResponseEntity.ok(productRepository.findByCategoria(categoria));
@@ -84,7 +84,7 @@ public class ProductController {
      * POST /api/productos
      * Crea un nuevo producto. Requiere scope Write.
      */
-    @PostMapping
+    @PostMapping({"", "/"})
     @PreAuthorize("hasAuthority('APPROLE_Operador') or hasAuthority('APPROLE_Admin') or hasAuthority('SCOPE_Write') or hasAuthority('SCOPE_Read')")
     public ResponseEntity<Product> createProduct(
             @Valid @RequestBody ProductDTO dto,
@@ -110,7 +110,7 @@ public class ProductController {
      * PUT /api/productos/{id}
      * Actualiza un producto existente. Requiere scope Write.
      */
-    @PutMapping("/{id}")
+    @PutMapping({"/{id}", "/{id}/"})
     @PreAuthorize("hasAuthority('APPROLE_Operador') or hasAuthority('APPROLE_Admin') or hasAuthority('SCOPE_Write') or hasAuthority('SCOPE_Read')")
     public ResponseEntity<Product> updateProduct(
             @PathVariable Long id,
@@ -136,7 +136,7 @@ public class ProductController {
      * DELETE /api/productos/{id}
      * Elimina un producto. Requiere scope Write.
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping({"/{id}", "/{id}/"})
     @PreAuthorize("hasAuthority('APPROLE_Operador') or hasAuthority('APPROLE_Admin') or hasAuthority('SCOPE_Write') or hasAuthority('SCOPE_Read')")
     public ResponseEntity<Void> deleteProduct(
             @PathVariable Long id,
