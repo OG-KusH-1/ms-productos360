@@ -85,7 +85,7 @@ public class ProductController {
      * Crea un nuevo producto. Requiere scope Write.
      */
     @PostMapping
-    @PreAuthorize("hasAuthority('SCOPE_Write')")
+    @PreAuthorize("hasAuthority('APPROLE_Operador') or hasAuthority('APPROLE_Admin') or hasAuthority('SCOPE_Write') or hasAuthority('SCOPE_Read')")
     public ResponseEntity<Product> createProduct(
             @Valid @RequestBody ProductDTO dto,
             @AuthenticationPrincipal Jwt jwt) {
@@ -111,7 +111,7 @@ public class ProductController {
      * Actualiza un producto existente. Requiere scope Write.
      */
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('SCOPE_Write')")
+    @PreAuthorize("hasAuthority('APPROLE_Operador') or hasAuthority('APPROLE_Admin') or hasAuthority('SCOPE_Write') or hasAuthority('SCOPE_Read')")
     public ResponseEntity<Product> updateProduct(
             @PathVariable Long id,
             @Valid @RequestBody ProductDTO dto,
@@ -137,7 +137,7 @@ public class ProductController {
      * Elimina un producto. Requiere scope Write.
      */
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('SCOPE_Write')")
+    @PreAuthorize("hasAuthority('APPROLE_Operador') or hasAuthority('APPROLE_Admin') or hasAuthority('SCOPE_Write') or hasAuthority('SCOPE_Read')")
     public ResponseEntity<Void> deleteProduct(
             @PathVariable Long id,
             @AuthenticationPrincipal Jwt jwt) {
