@@ -31,6 +31,7 @@ import java.util.List;
 public class ProductController {
 
     private final ProductRepository productRepository;
+    private final cl.duoc.pedidos360.productos.streaming.producer.ProductKafkaProducer productKafkaProducer;
 
     /**
      * GET /api/productos
@@ -103,6 +104,7 @@ public class ProductController {
 
         Product saved = productRepository.save(product);
         log.info("[ProductController] Producto creado con ID: {}", saved.getId());
+        productKafkaProducer.publishProductEvent(saved, "PRODUCT_CREATED", "Nuevo producto agregado: " + saved.getNombre());
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
@@ -127,7 +129,9 @@ public class ProductController {
                     existing.setStock(dto.getStock());
                     existing.setCategoria(dto.getCategoria());
                     if (dto.getEstado() != null) existing.setEstado(dto.getEstado());
-                    return ResponseEntity.ok(productRepository.save(existing));
+                    Product updated = productRepository.save(existing);
+                    productKafkaProducer.publishProductEvent(updated, "PRODUCT_STOCK_UPDATED", "Stock actualizado a " + updated.getStock());
+                    return ResponseEntity.ok(updated);
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
